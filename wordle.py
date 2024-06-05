@@ -32,12 +32,13 @@ def word_without_char(vocab, history, char):
 
 # print(generate_word(vocab, history))
 
-results = word_with_char(vocab, history, 'r', 1)
-results = word_with_char(results, history, 'o', 3)
+results = word_with_char(vocab, history, 'a')
+results = word_with_char(results, history, 'o')
 results = word_with_char(results, history, 'g')
+results = word_with_char(results, history, 'n')
 results = word_without_char(results, history, 'l')
-results = word_without_char(results, history, 'i')
-results = word_without_char(results, history, 'v')
 results = word_without_char(results, history, 'e')
-results = word_without_char(results, history, 'd')
+results = word_without_char(results, history, 's')
+results = word_without_char(results, history, 't')
+results = word_without_char(results, history, 'm')
 print(results)
