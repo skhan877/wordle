@@ -14,13 +14,14 @@ def check_word(word, history):
     return 'new word' if word not in history else 'already used'
 
 def generate_word(vocab, history):
-    new_word = sample(vocab, 1)[0]#.upper()
-    # print(new_word)
+    new_word = sample(vocab, 1)[0]
     return new_word, check_word(new_word, history)
 
-def word_with_char(vocab, history, char, char_idx=None):
-    if char_idx:
+def word_with_char(vocab, history, char, char_idx=None, not_char_idx=None):
+    if char_idx is not None:
         subset = [w for w in vocab if w[char_idx]==char.upper() and check_word(w, history) == 'new word']
+    elif not_char_idx is not None:
+        subset = [w for w in vocab if char.upper() in w and w[not_char_idx]!=char.upper() and check_word(w, history) == 'new word']
     else:
         subset = [w for w in vocab if char.upper() in w and check_word(w, history) == 'new word']
     return subset
@@ -32,13 +33,18 @@ def word_without_char(vocab, history, char):
 
 # print(generate_word(vocab, history))
 
-results = word_with_char(vocab, history, 'a')
-results = word_with_char(results, history, 'o')
-results = word_with_char(results, history, 'g')
-results = word_with_char(results, history, 'n')
-results = word_without_char(results, history, 'l')
-results = word_without_char(results, history, 'e')
-results = word_without_char(results, history, 's')
-results = word_without_char(results, history, 't')
-results = word_without_char(results, history, 'm')
+results = word_with_char(vocab=vocab, history=history, char='t', not_char_idx=4)
+results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
+results = word_with_char(vocab=results, history=history, char='t', not_char_idx=0)
+results = word_with_char(vocab=results, history=history, char='r', not_char_idx=1)
+results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
+
+# results = word_without_char(results, history, 'l')
+# results = word_without_char(results, history, 'a')
+# results = word_without_char(results, history, 's')
+# results = word_without_char(results, history, 'b')
+# results = word_without_char(results, history, 'y')
 print(results)
+
+
+# 'DETER', 'ENTRY', 'ETHER',  'METER', , 'MITER',  'OTTER', 'RECIT'
