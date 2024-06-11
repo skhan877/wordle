@@ -33,18 +33,19 @@ def word_without_char(vocab, history, char):
 
 # print(generate_word(vocab, history))
 
-results = word_with_char(vocab=vocab, history=history, char='t', not_char_idx=4)
-results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
-results = word_with_char(vocab=results, history=history, char='t', not_char_idx=0)
-results = word_with_char(vocab=results, history=history, char='r', not_char_idx=1)
-results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
+results = word_with_char(vocab=vocab, history=history, char='s', not_char_idx=3)
+# results = word_with_char(vocab=results, history=history, char='g', not_char_idx=2)
+# results = word_with_char(vocab=results, history=history, char='n', not_char_idx=4)
+# results = word_with_char(vocab=results, history=history, char='r', not_char_idx=1)
+# results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
 
-# results = word_without_char(results, history, 'l')
-# results = word_without_char(results, history, 'a')
-# results = word_without_char(results, history, 's')
-# results = word_without_char(results, history, 'b')
+results = word_without_char(results, history, 'l')
+results = word_without_char(results, history, 'e')
+results = word_without_char(results, history, 'a')
+results = word_without_char(results, history, 't')
+# results = word_without_char(results, history, 'e')
+# results = word_without_char(results, history, 'i')
 # results = word_without_char(results, history, 'y')
+# results = word_without_char(results, history, 'r')
 print(results)
 
-
-# 'DETER', 'ENTRY', 'ETHER',  'METER', , 'MITER',  'OTTER', 'RECIT'
