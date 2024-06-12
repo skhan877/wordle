@@ -30,4 +30,5 @@ def get_data():
 # redirect
 @views.route("/go-to-home")
 def go_home(): 
-    return redirect(url_for("views.home"))
+    return redirect(url_for("views.home")) # function name here 
+
