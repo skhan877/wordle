@@ -1,10 +1,16 @@
 import pandas as pd 
 # import nltk 
 # nltk.download('brown')
-from nltk.corpus import brown
+# from nltk.corpus import brown
 from random import sample 
 
-vocab = sorted(list(set([w.upper() for w in brown.words() if len(w)==5 and w[0].islower() and w.isalpha()])))
+# vocab = sorted(list(set([w.upper() for w in brown.words() if len(w)==5 and w[0].islower() and w.isalpha()])))
+vocab = pd.read_csv('english-words.txt')
+vocab = vocab['a'].tolist()
+vocab = [w.upper() for w in vocab if len(str(w))==5]
+
+# print(vocab[:10])
+
 
 f = pd.read_csv('prev-answers.txt') 
 history = f.columns.tolist()
@@ -33,19 +39,18 @@ def word_without_char(vocab, history, char):
 
 # print(generate_word(vocab, history))
 
-results = word_with_char(vocab=vocab, history=history, char='e', char_idx=1)
-results = word_with_char(vocab=results, history=history, char='t', char_idx=2)
-# results = word_with_char(vocab=results, history=history, char='n', not_char_idx=4)
-# results = word_with_char(vocab=results, history=history, char='r', not_char_idx=1)
+results = word_with_char(vocab=vocab, history=history, char='s', char_idx=3)
+results = word_with_char(vocab=results, history=history, char='t', char_idx=4)
+results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
+results = word_with_char(vocab=results, history=history, char='a', not_char_idx=1)
 # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
 
 results = word_without_char(results, history, 'l')
-results = word_without_char(results, history, 's')
-results = word_without_char(results, history, 'a')
-results = word_without_char(results, history, 'f')
-results = word_without_char(results, history, 'c')
-results = word_without_char(results, history, 'h')
+results = word_without_char(results, history, 'e')
+results = word_without_char(results, history, 'w')
+results = word_without_char(results, history, 'i')
+# results = word_without_char(results, history, 'c')
+# results = word_without_char(results, history, 'h')
 # results = word_without_char(results, history, 'y')
 # results = word_without_char(results, history, 'r')
 print(results)
-
