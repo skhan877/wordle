@@ -11,11 +11,13 @@ def historical_answers():
     history = history[0].split(sep=" ")
     return history
 
-def get_vocab(): 
-    # vocab = sorted(list(set([w.upper() for w in brown.words() if len(w)==5 and w[0].islower() and w.isalpha()])))
-    vocab = pd.read_csv('english-words.txt')
-    vocab = vocab['a'].tolist()
-    vocab = [w.upper() for w in vocab if len(str(w))==5]
+def get_vocab(source="nltk"):
+    if source=="nltk": 
+        vocab = sorted(list(set([w.upper() for w in brown.words() if len(w)==5 and w[0].islower() and w.isalpha()])))
+    elif source=="github":
+        vocab = pd.read_csv('english-words.txt')
+        vocab = vocab['a'].tolist()
+        vocab = [w.upper() for w in vocab if len(str(w))==5]
     return vocab
 
 def check_word(word, history): 
@@ -39,25 +41,27 @@ def word_without_char(vocab, history, char):
     return subset
 
 
-vocab = get_vocab() 
-history = historical_answers()
-# print(generate_word(vocab, history))
 
-results = word_with_char(vocab=vocab, history=history, char='l', not_char_idx=1)
-# results = word_with_char(vocab=results, history=history, char='t', char_idx=4)
-# results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
-# results = word_with_char(vocab=results, history=history, char='a', not_char_idx=1)
-# results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
+if __name__ == "__main__":
+    vocab = get_vocab(source="nltk") 
+    history = historical_answers()
+    # print(generate_word(vocab, history))
 
-results = word_without_char(results, history, 's')
-results = word_without_char(results, history, 'c')
-results = word_without_char(results, history, 'o')
-results = word_without_char(results, history, 'r')
-results = word_without_char(results, history, 'e')
-results = word_without_char(results, history, 'b')
-results = word_without_char(results, history, 'i')
-results = word_without_char(results, history, 'n')
-results = word_without_char(results, history, 'd')
-print(results)
+    results = word_with_char(vocab=vocab, history=history, char='l', not_char_idx=1)
+    # results = word_with_char(vocab=results, history=history, char='t', char_idx=4)
+    # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=1)
+    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
 
-# print(check_word('score', history))
+    results = word_without_char(results, history, 's')
+    results = word_without_char(results, history, 'c')
+    results = word_without_char(results, history, 'o')
+    results = word_without_char(results, history, 'r')
+    results = word_without_char(results, history, 'e')
+    results = word_without_char(results, history, 'b')
+    results = word_without_char(results, history, 'i')
+    results = word_without_char(results, history, 'n')
+    results = word_without_char(results, history, 'd')
+    print(results)
+
+    # print(check_word('score', history))

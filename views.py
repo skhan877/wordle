@@ -1,11 +1,15 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
+from wordle import get_vocab, historical_answers, generate_word
 
 views = Blueprint(__name__, "views")
 
 @views.route("/")
 def home():
     words = ['hi', 'hello', 'world']
-    return render_template("index.html", words=words)
+    vocab = get_vocab(source="nltk")
+    history = historical_answers()
+    new_word = generate_word(vocab, history)
+    return render_template("index.html", words=words, new_word=new_word)
 
 
 # access parameters from the URL 
