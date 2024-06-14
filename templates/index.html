@@ -7,12 +7,13 @@
 </head>
 <body>
     <div>
-        <h1>Home Page</h1>
-        <p>Hello, {{name}}.</p>
+        <h1>Wordle Helper</h1>
+        <p>Howdy</p>
+        <ul>
+            {% for w in words %}
+            <li>{{ w }}</li>
+            {% endfor %}
+        </ul>
     </div>
-    <script
-        type="text/javascript"
-        src="{{ url_for('static', filename='index.js')}}"
-    ></script>
 </body>
 </html>

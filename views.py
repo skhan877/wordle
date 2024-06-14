@@ -4,7 +4,8 @@ views = Blueprint(__name__, "views")
 
 @views.route("/")
 def home():
-    return render_template("index.html", name="Sameer", age="36")
+    words = ['hi', 'hello', 'world']
+    return render_template("index.html", words=words)
 
 
 # access parameters from the URL 
@@ -32,3 +33,12 @@ def get_data():
 def go_home(): 
     return redirect(url_for("views.home")) # function name here 
 
+
+@views.route("/call-python-function")
+def call_python_function():
+    my_func() 
+    return 'Python func called successfully'
+
+
+def my_func():
+    print("function called")
