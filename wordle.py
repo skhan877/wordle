@@ -21,7 +21,7 @@ def get_vocab(source="nltk"):
     return vocab
 
 def check_word(word, history): 
-    return 'new word' if word not in history else 'already used'
+    return 'new' if word not in history else 'used'
 
 def generate_word(vocab, history):
     new_word = sample(vocab, 1)[0]

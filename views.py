@@ -9,7 +9,7 @@ def home():
     vocab = get_vocab(source="nltk")
     history = historical_answers()
     new_word = generate_word(vocab, history)
-    return render_template("index.html", words=words, new_word=new_word)
+    return render_template("index.html", words=words, new_word=new_word[0], word_status=new_word[1])
 
 
 # access parameters from the URL 
