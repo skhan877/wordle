@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 </head>
-<body>
+<body style="background-color: blanchedalmond">
     <div>
         <h1 style="border:2px solid blue; background-color: blanchedalmond;">Wordle Helper</h1>
-        <p>Howdy</p>
-        <ul>
-            {% for w in words %}
-            <li>{{ w }}</li>
-            {% endfor %}
-            <li>How about the word {{ new_word }}? It's a {{ word_status }} word.</li>
-        </ul>
+    </div>
+    <div>
+        <h3>Start with a random word and note whether it's been used before or not: </h3>
+        <p>How about the word 
+            <span style="font-size:15px; color:red; font-weight:bold">{{ new_word }}</span>
+            ? It's a {{ word_status }} word.
+        </p>
+        Or hit Refresh to try another word.
     </div>
 </body>
 </html>
