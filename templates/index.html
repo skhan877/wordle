@@ -15,8 +15,18 @@
         <p>How about the word 
             <span style="font-size:15px; color:rgb(154, 6, 6); font-weight:bold">{{ new_word }}</span>?
              It's a {{ word_status }} word.
+             <br>
+            Hit <button style="border-radius: 10px;">Refresh</button> if you want to try a different word.
         </p>
-        Or hit <button style="border-radius: 10px;">Refresh</button> to try another word.
+        Or check to see if your own word has been used before:
+        <div>
+            <input type="text" id="word-to-check" placeholder="Enter a word..." />
+            <button py-click="check_word">Check Word</button>
+            <div id="output"></div>
+        <!--    <script type="py" src="./wordle.py"></script>  -->
+        </div>
+        <br>
+        Enter your starting word in the Wordle app to see how many letters matched.
     </div>
     <div>
         <h3>2. Were any letters correct? </h3>
@@ -32,12 +42,6 @@
             Then return to step 2 and filter the list down more.
         </p>
     </div>
-    <div>
-        <p> check word </p>
-        <input type="text" id="word-to-check" placeholder="Enter a word..." />
-        <button py-click="check_word">Check Word</button>
-        <div id="output"></div>
-        <script type="py" src="./wordle.py"></script>
-    </div>
+    
 </body>
 </html>
