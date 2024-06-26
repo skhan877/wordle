@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
-from wordle import get_vocab, historical_answers, generate_word
+from wordle import get_vocab, historical_answers, generate_word, check_word
 
 views = Blueprint(__name__, "views")
 
@@ -9,6 +9,7 @@ def home():
     vocab = get_vocab(source="nltk")
     history = historical_answers()
     new_word = generate_word(vocab, history)
+    check_word = check_word()
     return render_template("index.html", words=words, new_word=new_word[0], word_status=new_word[1])
 
 

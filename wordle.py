@@ -36,8 +36,9 @@ def word_with_char(vocab, history, char, char_idx=None, not_char_idx=None):
         subset = [w for w in vocab if char.upper() in w and check_word(w, history) == 'new']
     return subset
 
-def word_without_char(vocab, history, char):
-    subset = [w for w in vocab if char.upper() not in w and check_word(w, history) == 'new']
+def word_without_char(vocab, history, chars):
+    # subset = [w for w in vocab if char.upper() not in w and check_word(w, history) == 'new']
+    subset = [w for w in vocab if all(char.upper() not in w for char in chars) and check_word(w, history)=='new']
     return subset
 
 def append_solution(word):
@@ -49,35 +50,27 @@ def append_solution(word):
 if __name__ == "__main__":
     vocab = get_vocab(source="nltk") 
     history = historical_answers()
+    results = vocab
     # print(generate_word(vocab, history))
 
-    # append_solution()
 
     ### green letters ###
-    # results = word_with_char(vocab=vocab, history=history, char='a', char_idx=2)
-    # results = word_with_char(vocab=results, history=history, char='s', char_idx=3)
+    # results = word_with_char(vocab=results, history=history, char='c', char_idx=0)
+    # results = word_with_char(vocab=results, history=history, char='p', char_idx=2)
     
     ### yellow letters ####
     # results = word_with_char(vocab=results, history=history, char='r', not_char_idx=2)
-    # results = word_with_char(vocab=results, history=history, char='l', not_char_idx=1)
+    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=0)
     # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
     # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=1)
-    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
 
     ### without char ####
     # results = word_without_char(results, history, 'l')
-    # results = word_without_char(results, history, 'e')
-    # results = word_without_char(results, history, 'a')
-    # results = word_without_char(results, history, 's')
-    # results = word_without_char(results, history, 't')
-    # results = word_without_char(results, history, 'n')
-    # results = word_without_char(results, history, 'd')
-    # results = word_without_char(results, history, 'g')
-    # results = word_without_char(results, history, 'h')
-    # results = word_without_char(results, history, 'u')
-    # print(results)
+    # results = word_without_char(results, history, ['l','t','s'])
+    
+    print(results)
 
     # print(check_word('water', history))
 
-
-    
+    # append_solution('knead')
