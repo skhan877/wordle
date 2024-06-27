@@ -20,10 +20,10 @@
         </p>
         Or check to see if your own word has been used before:
         <div>
-            <input type="text" id="word-to-check" placeholder="Enter a word..." />
-            <button py-click="check_word">Check Word</button>
-            <div id="output"></div>
-        <!--    <script type="py" src="./wordle.py"></script>  -->
+            <form action="{{ url_for('views.check')}}" method="post">
+                <input type="text" name="check word" placeholder="Type here" />
+            </form>
+            Status: {{ check }}
         </div>
         <br>
         Enter your starting word in the Wordle app to see how many letters matched.

@@ -48,29 +48,29 @@ def append_solution(word):
 
 
 if __name__ == "__main__":
+
+    # append_solution('order')
+    
     vocab = get_vocab(source="nltk") 
     history = historical_answers()
+    
     results = vocab
     # print(generate_word(vocab, history))
+    print(check_word('PAINT', history))
 
 
     ### green letters ###
-    # results = word_with_char(vocab=results, history=history, char='c', char_idx=0)
+    # results = word_with_char(vocab=results, history=history, char='d', char_idx=2)
     # results = word_with_char(vocab=results, history=history, char='p', char_idx=2)
     
     ### yellow letters ####
-    # results = word_with_char(vocab=results, history=history, char='r', not_char_idx=2)
-    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=0)
-    # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
-    # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=1)
+    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
     # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
+    # results = word_with_char(vocab=results, history=history, char='a', not
 
     ### without char ####
-    # results = word_without_char(results, history, 'l')
-    # results = word_without_char(results, history, ['l','t','s'])
+    # results = word_without_char(results, history, ['l','a','t','s', 'n', 'u', 'g'])
     
-    print(results)
+    # print(results)
 
-    # print(check_word('water', history))
-
-    # append_solution('knead')
+    # print(history[-10:])

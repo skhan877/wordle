@@ -9,8 +9,16 @@ def home():
     vocab = get_vocab(source="nltk")
     history = historical_answers()
     new_word = generate_word(vocab, history)
-    check_word = check_word()
+    # check_word = check_word(request.form.values())
     return render_template("index.html", words=words, new_word=new_word[0], word_status=new_word[1])
+
+@views.route("/check", methods=["POST"])
+def check():
+    history = historical_answers()
+    user_word = [str(w) for w in request.form.values()][0]
+    print(user_word)
+    check = check_word(user_word, history)
+    return render_template("index.html", check=check)
 
 
 # access parameters from the URL 
