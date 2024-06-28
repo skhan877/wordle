@@ -12,22 +12,24 @@
     </div>
     <div>
         <h3>1. Start with a random word and note whether it's been used before or not: </h3>
-        <p>How about the word 
-            <span style="font-size:15px; color:rgb(154, 6, 6); font-weight:bold">{{ new_word }}</span>?
-             It's a {{ word_status }} word.
-             <br>
-            Hit <button style="border-radius: 10px;">Refresh</button> if you want to try a different word.
-        </p>
-        Or check to see if your own word has been used before:
         <div>
+            Check if your word has been used before:
             <form action="{{ url_for('views.check')}}" method="post">
                 <input type="text" name="check word" placeholder="Type here" />
+                <button style="border-radius: 10px;" type="submit">Check</button>
             </form>
-            Status: {{ check }}
+            {{ user_word }}: {{ check }}
         </div>
-        <br>
-        Enter your starting word in the Wordle app to see how many letters matched.
+        <div>
+            <br>
+            <form action="{{ url_for('views.home')}}" method="get">
+                Or you can <button style="border-radius: 10px;">click me</button> for a randomly selected new word:  
+                <span style="font-size:20px; color:rgb(154, 6, 6); font-weight:bold">{{ new_word }}</span>
+                <br>
+            </form>
+        </div>
     </div>
+    <h5>---------------------------------------------</h5>
     <div>
         <h3>2. Were any letters correct? </h3>
         <p>
@@ -36,6 +38,7 @@
             Enter all remaining letters that aren't in the solution.
         </p>
     </div>
+    <h5>---------------------------------------------</h5>
     <div>
         <h3>3. Choose from the filtered list of possible solutions. </h3>
         <p>

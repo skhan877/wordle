@@ -25,7 +25,7 @@ def check_word(word, history):
 
 def generate_word(vocab, history):
     new_word = sample(vocab, 1)[0]
-    return new_word, check_word(new_word, history)
+    return new_word if check_word(new_word, history) == "new" else generate_word(vocab, history)
 
 def word_with_char(vocab, history, char, char_idx=None, not_char_idx=None):
     if char_idx is not None:
@@ -49,27 +49,29 @@ def append_solution(word):
 
 if __name__ == "__main__":
 
-    # append_solution('order')
+    # append_solution('drove')
     
     vocab = get_vocab(source="nltk") 
     history = historical_answers()
     
     results = vocab
+    # w = generate_word(vocab, history)
+    # print(w, check_word(w, history))
     # print(generate_word(vocab, history))
-    print(check_word('PAINT', history))
+    # print(check_word('PAINT', history))
 
 
     ### green letters ###
-    # results = word_with_char(vocab=results, history=history, char='d', char_idx=2)
-    # results = word_with_char(vocab=results, history=history, char='p', char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='e', char_idx=4)
+    # results = word_with_char(vocab=results, history=history, char='o', char_idx=2)
     
     ### yellow letters ####
-    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
+    # results = word_with_char(vocab=results, history=history, char='r', not_char_idx=3)
     # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
     # results = word_with_char(vocab=results, history=history, char='a', not
 
     ### without char ####
-    # results = word_without_char(results, history, ['l','a','t','s', 'n', 'u', 'g'])
+    # results = word_without_char(results, history, ['l','a','t','s','c','h'])#, 'n', 'u', 'g'])
     
     # print(results)
 
