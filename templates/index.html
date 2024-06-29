@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <script type="module" src="https://pyscript.net/releases/2024.6.1/core.js"></script>
 </head>
 <body style="background-color: rgb(143, 193, 242)">
     <div>
@@ -19,7 +18,9 @@
                 <button style="border-radius: 10px;" type="submit">Check</button>
             </form>
             {{ user_word }}: {{ check }}
-        </div>
+        </div> 
+<!--    <button id="Enter" type="button" onclick="window.location.href" = "{{ check_page }}" ; class="button">Enter</button>   -->
+
         <div>
             <br>
             <form action="{{ url_for('views.home')}}" method="get">

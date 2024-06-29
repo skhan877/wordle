@@ -25,7 +25,7 @@ def check():
     user_word = [str(w).upper() for w in request.form.values()][0]
     print(user_word)
     check = check_word(user_word, history)
-    return render_template("index.html", check=check, user_word=user_word)
+    return render_template("checkword.html", check=check, user_word=user_word)
 
 
 # access parameters from the URL 
