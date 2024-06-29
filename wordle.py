@@ -49,7 +49,7 @@ def append_solution(word):
 
 if __name__ == "__main__":
 
-    # append_solution('drove')
+    append_solution('zebra')
     
     vocab = get_vocab(source="nltk") 
     history = historical_answers()
@@ -62,17 +62,16 @@ if __name__ == "__main__":
 
 
     ### green letters ###
-    # results = word_with_char(vocab=results, history=history, char='e', char_idx=4)
+    results = word_with_char(vocab=results, history=history, char='e', char_idx=1)
     # results = word_with_char(vocab=results, history=history, char='o', char_idx=2)
     
     ### yellow letters ####
-    # results = word_with_char(vocab=results, history=history, char='r', not_char_idx=3)
+    results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
     # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
-    # results = word_with_char(vocab=results, history=history, char='a', not
 
     ### without char ####
-    # results = word_without_char(results, history, ['l','a','t','s','c','h'])#, 'n', 'u', 'g'])
+    results = word_without_char(results, history, ['l','t','s'])
     
-    # print(results)
+    print(results)
 
     # print(history[-10:])

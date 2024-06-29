@@ -3,13 +3,21 @@ from wordle import get_vocab, historical_answers, generate_word, check_word
 
 views = Blueprint(__name__, "views")
 
-@views.route("/", methods=["GET"])
+@views.route("/", methods=["GET", "POST"])
 def home():
     vocab = get_vocab(source="nltk")
     history = historical_answers()
+    
+    # generate new random word
     new_word = generate_word(vocab, history)
-    check = check_word(new_word, history)
-    return render_template("index.html",  new_word=new_word, word_status=check)
+
+    # # check user word
+    # if request.form.values() is not None:
+    #     user_word = [str(w).upper() for w in request.form.values()][0]
+    #     check = check_word(user_word, history)
+
+    return render_template("index.html",  new_word=new_word)#, check=check, user_word=user_word)
+
 
 @views.route("/check", methods=["POST"])
 def check():
