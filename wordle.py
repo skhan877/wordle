@@ -49,7 +49,7 @@ def append_solution(word):
 
 if __name__ == "__main__":
 
-    # append_solution('buddy')
+    append_solution('canon')
     
     vocab = get_vocab(source="nltk") 
     history = historical_answers()
@@ -62,15 +62,17 @@ if __name__ == "__main__":
 
 
     ### green letters ###
-    results = word_with_char(vocab=results, history=history, char='b', char_idx=0)
+    # results = word_with_char(vocab=results, history=history, char='a', char_idx=2)
     # results = word_with_char(vocab=results, history=history, char='o', char_idx=2)
+    results = word_with_char(vocab=results, history=history, char='c', char_idx=0)
     
     ### yellow letters ####
-    results = word_with_char(vocab=results, history=history, char='u', not_char_idx=2)
-    results = word_with_char(vocab=results, history=history, char='d', not_char_idx=4)
+    results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='c', not_char_idx=3)
+    # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
 
     ### without char ####
-    results = word_without_char(results, history, ['l','t','s', 'e', 'a','r','i','c','k','o','n'])
+    results = word_without_char(results, history, ['l','e','s','t','h','i','r'])
     
     print(results)
 
