@@ -77,6 +77,6 @@ if __name__ == "__main__":
     ### without char ####
     # results = word_without_char(results, history, ['l','s','t','e','a', 'c','o','u','g','h'])
     
-    print(results)
+    # print(results)
 
     # print(history[-10:])

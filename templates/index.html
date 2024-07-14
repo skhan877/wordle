@@ -17,10 +17,8 @@
             <input type="text" name="check word" placeholder="Type here" /> 
                 <button style="border-radius: 10px;" type="submit">Check</button>
             </form>
-        {{ user_word }}: {{ check }} 
-        </div> 
-        <button id="Enter" type="button" onclick="window.location.href" = "{{ check_page }}" ; class="button">Enter</button> 
-
+ <!--       {{ user_word }}: {{ check }} -->
+        </div>
         <div>
             <br>
             <form action="{{ url_for('views.home')}}" method="get">
