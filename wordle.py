@@ -49,7 +49,7 @@ def append_solution(word):
 
 if __name__ == "__main__":
 
-    # append_solution('video')
+    append_solution('swoon')
     
     vocab = get_vocab(source="nltk") 
     history = historical_answers()
