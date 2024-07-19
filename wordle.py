@@ -49,7 +49,7 @@ def append_solution(word):
 
 if __name__ == "__main__":
 
-    append_solution('swoon')
+    append_solution('refer')
     
     vocab = get_vocab(source="nltk") 
     history = historical_answers()
@@ -62,21 +62,21 @@ if __name__ == "__main__":
 
 
     ### green letters ###
-    # results = word_with_char(vocab=results, history=history, char='t', char_idx=4)
-    # results = word_with_char(vocab=results, history=history, char='a', char_idx=1)
-    # results = word_with_char(vocab=results, history=history, char='n', char_idx=3)
-    # results = word_with_char(vocab=results, history=history, char='e', char_idx=4)
+    results = word_with_char(vocab=results, history=history, char='e', char_idx=1)
+    # results = word_with_char(vocab=results, history=history, char='n', char_idx=0)
+    # results = word_with_char(vocab=results, history=history, char='r', char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='o', char_idx=3)
     
     ### yellow letters ####
-    # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=2)
-    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
-    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
-    # results = word_with_char(vocab=results, history=history, char='a', not_char_idx=0)
+    # results = word_with_char(vocab=results, history=history, char='r', not_char_idx=0)
+    # results = word_with_char(vocab=results, history=history, char='n', not_char_idx=4)
+    results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
+    # results = word_with_char(vocab=results, history=history, char='t', not_char_idx=0)
     # results = word_with_char(vocab=results, history=history, char='o', not_char_idx=2)
 
     ### without char ####
-    # results = word_without_char(results, history, ['l','s','t','e','a', 'c','o','u','g','h'])
+    results = word_without_char(results, history, ['l','s','a','t','i','g','n'])
     
-    # print(results)
+    print(results)
 
     # print(history[-10:])
