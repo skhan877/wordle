@@ -49,34 +49,33 @@ def append_solution(word):
 
 if __name__ == "__main__":
 
-    append_solution('refer')
+    # append_solution('ensue')
     
-    vocab = get_vocab(source="nltk") 
+    vocab = get_vocab(source="github") 
     history = historical_answers()
-    
     results = vocab
-    # w = generate_word(vocab, history)
-    # print(w, check_word(w, history))
+
+    w = generate_word(vocab, history)
+    print(w, check_word(w, history))
     # print(generate_word(vocab, history))
-    # print(check_word('PAINT', history))
+    # print(check_word('MANGO', history))
 
 
     ### green letters ###
-    results = word_with_char(vocab=results, history=history, char='e', char_idx=1)
-    # results = word_with_char(vocab=results, history=history, char='n', char_idx=0)
-    # results = word_with_char(vocab=results, history=history, char='r', char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='e', char_idx=4)
+    # results = word_with_char(vocab=results, history=history, char='a', char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='u', char_idx=3)
     # results = word_with_char(vocab=results, history=history, char='o', char_idx=3)
     
     ### yellow letters ####
-    # results = word_with_char(vocab=results, history=history, char='r', not_char_idx=0)
-    # results = word_with_char(vocab=results, history=history, char='n', not_char_idx=4)
-    results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
-    # results = word_with_char(vocab=results, history=history, char='t', not_char_idx=0)
+    # results = word_with_char(vocab=results, history=history, char='k', not_char_idx=3)
+    # results = word_with_char(vocab=results, history=history, char='s', not_char_idx=1)
+    # results = word_with_char(vocab=results, history=history, char='o', not_char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
+    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
     # results = word_with_char(vocab=results, history=history, char='o', not_char_idx=2)
 
     ### without char ####
-    results = word_without_char(results, history, ['l','s','a','t','i','g','n'])
+    # results = word_without_char(results, history, ['s','t','l','g','r','p','w'])
     
-    print(results)
-
-    # print(history[-10:])
+    #print(results)
