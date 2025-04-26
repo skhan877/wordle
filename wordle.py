@@ -6,6 +6,10 @@ from random import sample
 
 
 def historical_answers():
+    """
+    TODO
+    scrape from https://www.rockpapershotgun.com/wordle-past-answers 
+    """
     f = pd.read_csv('prev-answers.txt') 
     history = f.columns.tolist()
     history = history[0].split(sep=" ")
@@ -38,7 +42,7 @@ def word_with_char(vocab, history, char, char_idx=None, not_char_idx=None):
 
 def word_without_char(vocab, history, chars):
     # subset = [w for w in vocab if char.upper() not in w and check_word(w, history) == 'new']
-    subset = [w for w in vocab if all(char.upper() not in w for char in chars) and check_word(w, history)=='new']
+    subset = [w for w in vocab if all(char.upper() not in w for char in chars) and check_word(w, history) == 'new']
     return subset
 
 def append_solution(word):
@@ -49,26 +53,26 @@ def append_solution(word):
 
 if __name__ == "__main__":
 
-    # append_solution('ensue')
+    # append_solution('clash')
     
-    vocab = get_vocab(source="github") 
+    vocab = get_vocab(source="nltk") # or nltk
     history = historical_answers()
-    results = vocab
+    results = vocab.copy()
 
-    w = generate_word(vocab, history)
-    print(w, check_word(w, history))
+    # w = generate_word(vocab, history)
+    # print(w, check_word(w, history))
     # print(generate_word(vocab, history))
     # print(check_word('MANGO', history))
 
 
     ### green letters ###
-    # results = word_with_char(vocab=results, history=history, char='e', char_idx=4)
-    # results = word_with_char(vocab=results, history=history, char='a', char_idx=2)
+    results = word_with_char(vocab=results, history=history, char='a', char_idx=2)
+    results = word_with_char(vocab=results, history=history, char='s', char_idx=3)
     # results = word_with_char(vocab=results, history=history, char='u', char_idx=3)
     # results = word_with_char(vocab=results, history=history, char='o', char_idx=3)
     
     ### yellow letters ####
-    # results = word_with_char(vocab=results, history=history, char='k', not_char_idx=3)
+    results = word_with_char(vocab=results, history=history, char='l', not_char_idx=0)
     # results = word_with_char(vocab=results, history=history, char='s', not_char_idx=1)
     # results = word_with_char(vocab=results, history=history, char='o', not_char_idx=2)
     # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
@@ -78,4 +82,4 @@ if __name__ == "__main__":
     ### without char ####
     # results = word_without_char(results, history, ['s','t','l','g','r','p','w'])
     
-    #print(results)
+    print(results)
