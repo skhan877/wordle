@@ -45,6 +45,9 @@ def word_without_char(vocab, history, chars):
     subset = [w for w in vocab if all(char.upper() not in w for char in chars) and check_word(w, history) == 'new']
     return subset
 
+def generate_potentials(vocab, history, chars, hits): 
+    pass
+
 def append_solution(word):
     with open('prev-answers.txt', 'a') as f:
         f.write(' ' + word.upper())
