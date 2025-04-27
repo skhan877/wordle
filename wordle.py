@@ -45,8 +45,15 @@ def word_without_char(vocab, history, chars):
     subset = [w for w in vocab if all(char.upper() not in w for char in chars) and check_word(w, history) == 'new']
     return subset
 
-def generate_potentials(vocab, history, chars, hits): 
-    pass
+def generate_potentials(vocab, history, guess, result): 
+    n = len(result)
+    subset = []
+    for i in range(n):
+        if result[i] == 'g':
+            subs = word_with_char(vocab=results, history=history, char=guess[i], char_idx=i)
+            subset.append(subs)
+    return subset 
+
 
 def append_solution(word):
     with open('prev-answers.txt', 'a') as f:
@@ -69,13 +76,13 @@ if __name__ == "__main__":
 
 
     ### green letters ###
-    results = word_with_char(vocab=results, history=history, char='a', char_idx=2)
-    results = word_with_char(vocab=results, history=history, char='s', char_idx=3)
+    # results = word_with_char(vocab=results, history=history, char='a', char_idx=2)
+    # results = word_with_char(vocab=results, history=history, char='s', char_idx=3)
     # results = word_with_char(vocab=results, history=history, char='u', char_idx=3)
     # results = word_with_char(vocab=results, history=history, char='o', char_idx=3)
     
     ### yellow letters ####
-    results = word_with_char(vocab=results, history=history, char='l', not_char_idx=0)
+    # results = word_with_char(vocab=results, history=history, char='l', not_char_idx=0)
     # results = word_with_char(vocab=results, history=history, char='s', not_char_idx=1)
     # results = word_with_char(vocab=results, history=history, char='o', not_char_idx=2)
     # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
@@ -84,5 +91,8 @@ if __name__ == "__main__":
 
     ### without char ####
     # results = word_without_char(results, history, ['s','t','l','g','r','p','w'])
-    
+
+
+    results = generate_potentials(results, history, "check", "gggxg")
+
     print(results)
