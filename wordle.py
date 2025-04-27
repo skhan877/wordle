@@ -41,19 +41,21 @@ def word_with_char(vocab, history, char, char_idx=None, not_char_idx=None):
     return subset
 
 def word_without_char(vocab, history, chars):
-    # subset = [w for w in vocab if char.upper() not in w and check_word(w, history) == 'new']
+    chars = [c for c in chars]
     subset = [w for w in vocab if all(char.upper() not in w for char in chars) and check_word(w, history) == 'new']
     return subset
 
-def generate_potentials(vocab, history, guess, result): 
+def generate_potentials(vocab, history, guess, result, incorrect_letters): 
     n = len(result)
-    subset = []
+    subset = vocab.copy()
     for i in range(n):
         if result[i] == 'g':
-            subs = word_with_char(vocab=results, history=history, char=guess[i], char_idx=i)
-            subset.append(subs)
-    return subset 
+            subset = word_with_char(vocab=subset, history=history, char=guess[i], char_idx=i)
+        elif result[i] == "y":
+            subset = word_with_char(vocab=subset, history=history, char=guess[i], not_char_idx=i)
 
+    subset = word_without_char(vocab=subset, history=history, chars=incorrect_letters)
+    return subset 
 
 def append_solution(word):
     with open('prev-answers.txt', 'a') as f:
@@ -63,9 +65,9 @@ def append_solution(word):
 
 if __name__ == "__main__":
 
-    # append_solution('clash')
+    # append_solution('weedy')
     
-    vocab = get_vocab(source="nltk") # or nltk
+    vocab = get_vocab(source="github") # github or nltk
     history = historical_answers()
     results = vocab.copy()
 
@@ -74,25 +76,5 @@ if __name__ == "__main__":
     # print(generate_word(vocab, history))
     # print(check_word('MANGO', history))
 
-
-    ### green letters ###
-    # results = word_with_char(vocab=results, history=history, char='a', char_idx=2)
-    # results = word_with_char(vocab=results, history=history, char='s', char_idx=3)
-    # results = word_with_char(vocab=results, history=history, char='u', char_idx=3)
-    # results = word_with_char(vocab=results, history=history, char='o', char_idx=3)
-    
-    ### yellow letters ####
-    # results = word_with_char(vocab=results, history=history, char='l', not_char_idx=0)
-    # results = word_with_char(vocab=results, history=history, char='s', not_char_idx=1)
-    # results = word_with_char(vocab=results, history=history, char='o', not_char_idx=2)
-    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=4)
-    # results = word_with_char(vocab=results, history=history, char='e', not_char_idx=1)
-    # results = word_with_char(vocab=results, history=history, char='o', not_char_idx=2)
-
-    ### without char ####
-    # results = word_without_char(results, history, ['s','t','l','g','r','p','w'])
-
-
-    results = generate_potentials(results, history, "check", "gggxg")
-
+    results = generate_potentials(results, history, "least", "yyyyy", "")
     print(results)
