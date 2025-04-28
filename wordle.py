@@ -46,16 +46,20 @@ def word_without_char(vocab, history, chars):
     return subset
 
 def generate_potentials(vocab, history, guess, result, incorrect_letters): 
-    n = len(result)
-    subset = vocab.copy()
-    for i in range(n):
-        if result[i] == 'g':
-            subset = word_with_char(vocab=subset, history=history, char=guess[i], char_idx=i)
-        elif result[i] == "y":
-            subset = word_with_char(vocab=subset, history=history, char=guess[i], not_char_idx=i)
+    if result == "ggggg":
+        append_solution(guess)
+        return "Solved!"
+    else:
+        n = len(result)
+        subset = vocab.copy()
+        for i in range(n):
+            if result[i] == 'g':
+                subset = word_with_char(vocab=subset, history=history, char=guess[i], char_idx=i)
+            elif result[i] == "y":
+                subset = word_with_char(vocab=subset, history=history, char=guess[i], not_char_idx=i)
 
-    subset = word_without_char(vocab=subset, history=history, chars=incorrect_letters)
-    return subset 
+        subset = word_without_char(vocab=subset, history=history, chars=incorrect_letters)
+        return subset 
 
 def append_solution(word):
     with open('prev-answers.txt', 'a') as f:
@@ -76,5 +80,5 @@ if __name__ == "__main__":
     # print(generate_word(vocab, history))
     # print(check_word('MANGO', history))
 
-    results = generate_potentials(results, history, "least", "yyyyy", "")
+    results = generate_potentials(results, history, "dummy", "ggggg", "leastcoghbp")
     print(results)
