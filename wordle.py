@@ -62,15 +62,20 @@ def generate_potentials(vocab, history, guess, result, incorrect_letters):
         return subset 
 
 def append_solution(word):
-    with open('prev-answers.txt', 'a') as f:
-        f.write(' ' + word.upper())
+    fname = 'prev-answers.txt'
+    with open(fname, 'r') as f:
+        lst = f.read().split()
+        if lst[-1] == word.upper():
+            print(word.upper() + " already added to history")
+        else:
+            with open(fname, 'a') as ff:
+                ff.write(' ' + word.upper())
+                print(word.upper() + " now appended to history")
 
 
 
 if __name__ == "__main__":
 
-    # append_solution('weedy')
-    
     vocab = get_vocab(source="github") # github or nltk
     history = historical_answers()
     results = vocab.copy()
