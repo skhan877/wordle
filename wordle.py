@@ -85,5 +85,5 @@ if __name__ == "__main__":
     # print(generate_word(vocab, history))
     # print(check_word('MANGO', history))
 
-    results = generate_potentials(results, history, "dummy", "ggggg", "leastcoghbp")
+    results = generate_potentials(results, history, "bliss", "ggggg", "eatfuh")
     print(results)

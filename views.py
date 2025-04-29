@@ -5,7 +5,7 @@ views = Blueprint(__name__, "views")
 
 @views.route("/", methods=["GET", "POST"])
 def home():
-    vocab = get_vocab(source="nltk")
+    vocab = get_vocab(source="github")
     history = historical_answers()
     
     # generate new random word
