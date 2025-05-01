@@ -10,19 +10,17 @@
         <h1 style="border:2px solid blue; background-color: blanchedalmond; text-align: center;">Wordle Helper</h1>
     </div>
     <div>
-        <h3>1. Start with a random word and note whether it's been used before or not: </h3>
-        <div>
+        <h3>1. Click for a new starter word... </h3>
+        <!-- <div>
             Check if your word has been used before:
             <form action="{{ url_for('views.check')}}" method="post">
             <input type="text" name="check word" placeholder="Type here" /> 
                 <button style="border-radius: 10px;" type="submit">Check</button>
             </form>
- <!--       {{ user_word }}: {{ check }} -->
-        </div>
+        </div> -->
         <div>
-            <br>
             <form action="{{ url_for('views.home')}}" method="get">
-                Or you can <button style="border-radius: 10px;">click me</button> for a randomly selected new word:  
+                <button style="border-radius: 10px;">New Word</button>
                 <span style="font-size:20px; color:rgb(154, 6, 6); font-weight:bold">{{ new_word }}</span>
                 <br>
             </form>
