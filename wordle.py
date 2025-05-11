@@ -60,11 +60,7 @@ def generate_potentials(vocab, history, guess, result, incorrect_letters, yellow
             elif result[i] == "y":
                 yellow = (i, guess[i].upper())
                 yellows.append(yellow)
-                # print(yellows)
-        # print(yellows)
         for y in yellows:
-            # subset = word_with_char(vocab=subset, history=history, char=guess[i], not_char_idx=i)
-            # print(y[0], y[1])
             subset = word_with_char(vocab=subset, history=history, char=y[1], not_char_idx=y[0])
 
         subset = word_without_char(vocab=subset, history=history, chars=incorrect_letters)
@@ -89,5 +85,5 @@ if __name__ == "__main__":
     history = historical_answers()
     results = vocab.copy()
     yellows = []
-    results = generate_potentials(results, history, "malay", "yggxg", "oest", yellows=yellows)
+    results = generate_potentials(results, history, "dowel", "ggggg", "hast", yellows=yellows)
     print(results)
