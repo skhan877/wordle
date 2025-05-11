@@ -45,15 +45,18 @@ def word_without_char(vocab, history, chars):
     subset = [w for w in vocab if all(char.upper() not in w for char in chars) and check_word(w, history) == 'new']
     return subset
 
+"""
 def generate_potentials(vocab, history, guess, result, incorrect_letters, yellows): 
+    # correct solution
     if result == "ggggg":
         append_solution(guess)
         return "Solved!"
+
     else:
         n = len(result)
         subset = vocab.copy()
-        # yellows = []
-        
+        yellows = []
+    
         for i in range(n):
             if result[i] == 'g':
                 subset = word_with_char(vocab=subset, history=history, char=guess[i], char_idx=i)
@@ -63,8 +66,25 @@ def generate_potentials(vocab, history, guess, result, incorrect_letters, yellow
         for y in yellows:
             subset = word_with_char(vocab=subset, history=history, char=y[1], not_char_idx=y[0])
 
+        # incorrect letters
         subset = word_without_char(vocab=subset, history=history, chars=incorrect_letters)
         return subset 
+"""
+
+def generate_potentials(vocab, history, guess, result, incorrect_letters, yellows): 
+    n = len(result)
+    yellows = []
+    while result != "ggggg": 
+        for i in range(n): 
+            if result[i] == "y":
+                yellows.append(guess[i], i)  # append tupel of (char, position) 
+                break 
+    
+    append_solution(guess)
+    return "Solved!"
+
+
+
 
 def append_solution(word):
     fname = 'prev-answers.txt'
@@ -84,6 +104,7 @@ if __name__ == "__main__":
     vocab = get_vocab(source="github") # github or nltk
     history = historical_answers()
     results = vocab.copy()
-    yellows = []
-    results = generate_potentials(results, history, "dowel", "ggggg", "hast", yellows=yellows)
+    # yellows = []
+    # results = generate_potentials(results, history, "dowel", "ggggg", "hast", yellows=yellows)
+    results = generate_potentials(results, history, "dowel", "ggggg", "hast")
     print(results)
