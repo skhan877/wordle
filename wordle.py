@@ -45,7 +45,7 @@ def word_without_char(vocab, history, chars):
     subset = [w for w in vocab if all(char.upper() not in w for char in chars) and check_word(w, history) == 'new']
     return subset
 
-"""
+
 def generate_potentials(vocab, history, guess, result, incorrect_letters, yellows): 
     # correct solution
     if result == "ggggg":
@@ -69,19 +69,27 @@ def generate_potentials(vocab, history, guess, result, incorrect_letters, yellow
         # incorrect letters
         subset = word_without_char(vocab=subset, history=history, chars=incorrect_letters)
         return subset 
-"""
 
-def generate_potentials(vocab, history, guess, result, incorrect_letters, yellows): 
-    n = len(result)
-    yellows = []
-    while result != "ggggg": 
-        for i in range(n): 
-            if result[i] == "y":
-                yellows.append(guess[i], i)  # append tupel of (char, position) 
-                break 
+
+def YellowTracker(): 
+    def __init__(self): 
+        self.yellows = []
+    def add(self, char, idx): 
+        pair = (char, idx) 
+        self.yellows.append(pair)
+
+
+# def generate_potentials(vocab, history, guess, result, incorrect_letters, yellows): 
+#     n = len(result)
+#     while result != "ggggg": 
+#         yt = YellowTracker()
+#         for i in range(n): 
+#             if result[i] == "y":
+#                 yellows.append(guess[i], i)  # append tupel of (char, position) 
+#                 break 
     
-    append_solution(guess)
-    return "Solved!"
+#     append_solution(guess)
+#     return "Solved!"
 
 
 
@@ -104,7 +112,7 @@ if __name__ == "__main__":
     vocab = get_vocab(source="github") # github or nltk
     history = historical_answers()
     results = vocab.copy()
-    # yellows = []
+    yellows = []
     # results = generate_potentials(results, history, "dowel", "ggggg", "hast", yellows=yellows)
-    results = generate_potentials(results, history, "dowel", "ggggg", "hast")
+    results = generate_potentials(results, history, "bicep", "ggggg", "wnlast", yellows)
     print(results)
