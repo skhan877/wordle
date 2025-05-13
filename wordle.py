@@ -46,37 +46,39 @@ def word_without_char(vocab, history, chars):
     return subset
 
 
-def generate_potentials(vocab, history, guess, result, incorrect_letters, yellows): 
+def generate_potentials(vocab, history, guess, result, yellows, incorrect): 
     # correct solution
-    if result == "ggggg":
-        append_solution(guess)
-        return "Solved!"
+    # if result == "ggggg":
+    #     append_solution(guess)
+    #     return "Solved!"
 
-    else:
-        n = len(result)
-        subset = vocab.copy()
-        yellows = []
+    # else:
+    n = len(result)
+    subset = vocab.copy()
     
-        for i in range(n):
-            if result[i] == 'g':
-                subset = word_with_char(vocab=subset, history=history, char=guess[i], char_idx=i)
-            elif result[i] == "y":
-                yellow = (i, guess[i].upper())
-                yellows.append(yellow)
-        for y in yellows:
-            subset = word_with_char(vocab=subset, history=history, char=y[1], not_char_idx=y[0])
+    for i in range(n):
+        if result[i] == 'g':
+            subset = word_with_char(vocab=subset, history=history, char=guess[i], char_idx=i)
+        elif result[i] == "y":
+            yellow = (i, guess[i].upper())
+            yellows.append(yellow)
+        elif result[i] == "x": 
+            incorrect += guess[i]
+    
+    for y in yellows:
+        subset = word_with_char(vocab=subset, history=history, char=y[1], not_char_idx=y[0])
 
-        # incorrect letters
-        subset = word_without_char(vocab=subset, history=history, chars=incorrect_letters)
-        return subset 
+    # incorrect letters
+    subset = word_without_char(vocab=subset, history=history, chars=incorrect)
+    return subset 
 
 
-def YellowTracker(): 
-    def __init__(self): 
-        self.yellows = []
-    def add(self, char, idx): 
-        pair = (char, idx) 
-        self.yellows.append(pair)
+# def YellowTracker(): 
+#     def __init__(self): 
+#         self.yellows = []
+#     def add(self, char, idx): 
+#         pair = (char, idx) 
+#         self.yellows.append(pair)
 
 
 # def generate_potentials(vocab, history, guess, result, incorrect_letters, yellows): 
@@ -113,6 +115,22 @@ if __name__ == "__main__":
     history = historical_answers()
     results = vocab.copy()
     yellows = []
-    # results = generate_potentials(results, history, "dowel", "ggggg", "hast", yellows=yellows)
-    results = generate_potentials(results, history, "bicep", "ggggg", "wnlast", yellows)
-    print(results)
+    incorrect = ""
+    print(yellows)
+
+    
+    i = 0
+    while i < 6:
+        while result != "ggggg":
+            guess = input("Enter word: ")
+            result = input("Enter result: ")
+            results = generate_potentials(results, history, guess, result, yellows, incorrect)
+            print(f"yellows: {yellows}")
+            print(f"incorrect: {incorrect}")
+            print(results)
+            i += 1
+        if result == "ggggg":
+            print("Solved")
+            append_solution(guess)
+        else:
+            print("Not solved today")
