@@ -47,12 +47,6 @@ def word_without_char(vocab, history, chars):
 
 
 def generate_potentials(vocab, history, guess, result, yellows, incorrect): 
-    # correct solution
-    # if result == "ggggg":
-    #     append_solution(guess)
-    #     return "Solved!"
-
-    # else:
     n = len(result)
     subset = vocab.copy()
     
@@ -72,30 +66,6 @@ def generate_potentials(vocab, history, guess, result, yellows, incorrect):
     subset = word_without_char(vocab=subset, history=history, chars=incorrect)
     return subset 
 
-
-# def YellowTracker(): 
-#     def __init__(self): 
-#         self.yellows = []
-#     def add(self, char, idx): 
-#         pair = (char, idx) 
-#         self.yellows.append(pair)
-
-
-# def generate_potentials(vocab, history, guess, result, incorrect_letters, yellows): 
-#     n = len(result)
-#     while result != "ggggg": 
-#         yt = YellowTracker()
-#         for i in range(n): 
-#             if result[i] == "y":
-#                 yellows.append(guess[i], i)  # append tupel of (char, position) 
-#                 break 
-    
-#     append_solution(guess)
-#     return "Solved!"
-
-
-
-
 def append_solution(word):
     fname = 'prev-answers.txt'
     with open(fname, 'r') as f:
@@ -114,23 +84,21 @@ if __name__ == "__main__":
     vocab = get_vocab(source="github") # github or nltk
     history = historical_answers()
     results = vocab.copy()
-    yellows = []
-    incorrect = ""
-    print(yellows)
-
     
     i = 0
     while i < 6:
-        while result != "ggggg":
-            guess = input("Enter word: ")
-            result = input("Enter result: ")
+        yellows = []
+        incorrect = ""
+        guess = input("Enter word: ")
+        result = input("Enter result: ")
+        if result != "ggggg":    
             results = generate_potentials(results, history, guess, result, yellows, incorrect)
-            print(f"yellows: {yellows}")
-            print(f"incorrect: {incorrect}")
             print(results)
+            print("")
             i += 1
-        if result == "ggggg":
-            print("Solved")
-            append_solution(guess)
         else:
-            print("Not solved today")
+            print("Solved")
+            append_solution(guess) 
+            break   
+    if i == 6:
+        print("Not solved today")
